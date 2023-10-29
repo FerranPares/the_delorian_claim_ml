@@ -23,7 +23,7 @@ model = dict(
         mask_head=dict(num_classes=n_classes)))
 
 # Modify dataset related settings
-data_root = '/home/fpares/prima_projects/delorian_claim/the_delorian_claim_ml/data/CarDD_COCO/'
+data_root = '/home/fpares/prima_projects/delorian_claim/the_delorian_claim_ml/small_data/CarDD_COCO/'
 
 backend_args = None
 train_pipeline = [
