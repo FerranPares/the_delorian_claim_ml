@@ -1,4 +1,4 @@
-# the_delorian_claim_ml
+# The DeLorian Claim
 
 Repository to handle training and inference of the ML model for the Hackathon.
 
