@@ -22,21 +22,39 @@ In case you do not have pyenv, make sure to use Python 3.10.9.
 Although I have left the `requirements.txt` file, I've followed the [installation instructions](https://mmdetection.readthedocs.io/en/latest/get_started.html#installation) from the official MMDetection documentation. I leave the specific instructions I've followed:
 
 ```bash
-// If you do not have virtualenv installed
+# If you do not have virtualenv installed
 pip install virtualenv
-// Create a Virtual environment
+# Create a Virtual environment
 virtualenv venv
-// Activate the virtualenv
+# Activate the virtualenv
 source venv/bin/activate
-// Install main DL dependencies for MMDetection
+# Install main DL dependencies for MMDetection
 pip install torch==2.1.0 torchvision==0.16.0
-// Install a rare package manager they use called mim
+# Install a rare package manager they use called mim
 pip install -U openmim
-// Use mim to install mmengine & mmcv
+# Use mim to install mmengine & mmcv
 mim install mmengine
 mim install "mmcv>=2.0.0"
-// Install MMDetection from its source
+# Install MMDetection from its source
 pip install -v -e mmdetection
+```
+
+### Download CarDD Dataset
+
+Download the dataset zip file from the [official Drive URL](https://drive.google.com/file/d/1bbyqVCKZX5Ur5Zg-uKj0jD0maWAVeOLx/view). 
+Unzip the file and extract the `CarDD_release` folder. Then:
+```bash
+mkdir -p data
+mv CarDD_release/CarDD_COCO data/.
+```
+
+Feel free to remove the other dataset inside the `CarDD_release` folder afterwards.
+
+### Download the DCN pretrained model on the COCO dataset
+
+Use the [download_pretrained_model.sh](download_pretrained_model.sh) shell script for downloading the pretrained model:
+```bash
+sh download_pretrained_model.sh
 ```
 
 ## Training
@@ -57,9 +75,13 @@ DISCLAIMER: Do not execute this, it takes ages in a regular computing node (and 
 In case you wanna play with a toy example, I have created the small version of the dataset to check everything runs as expected before running the main one. Feel free to give it a try:
 
 ```bash
+# Copy data folder
 cp data small_data
+# Remove all images from all folders not containing the pattern "*0.jpg" (Keep 1/10 fo the data)
 find small_data ! -iname "*0.jpg" -delete
+# Remove the metadata as well according to the same pattern
 python data_reducer.py
+# Execute the training script but with the small dataset
 python train_small_model.py
 ```
 
