@@ -30,8 +30,10 @@ train_pipeline = [
     dict(type='LoadImageFromFile', backend_args=backend_args),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
     dict(
-        type='RandomResize',
-        scale=[(1333, 640), (1333, 1200)],
+        # type='RandomResize',
+        # scale=[(1333, 640), (1333, 1200)],
+        type='Resize',
+        scale=(1000, 667),
         keep_ratio=False,
         backend='pillow'
     ),
@@ -41,8 +43,10 @@ train_pipeline = [
 test_pipeline = [
     dict(type='LoadImageFromFile', backend_args=backend_args),
     dict(
-        type='RandomResize',
-        scale=[(1333, 640), (1333, 1200)],
+        # type='RandomResize',
+        # scale=[(1333, 640), (1333, 1200)],
+        type='Resize',
+        scale=(1000, 667),
         keep_ratio=False,
         backend='pillow'
     ),
