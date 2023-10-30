@@ -1,9 +1,15 @@
 import numpy as np
+from pathlib import Path
+
 from mmdet.apis import DetInferencer
 from dataclasses import dataclass
 
+MODEL_CONFIG_PATH = str(Path(__file__).parent / "config" / "DCN_plus_cfg.py")
+WEIGHTS_PATH = str(Path(__file__).parent / "weights" / "epoch_24.pth")
+
+
 # Initialize the DetInferencer
-inferencer = DetInferencer(model='config/DCN_plus_cfg.py', weights='weights/epoch_24.pth')
+inferencer = DetInferencer(model=MODEL_CONFIG_PATH, weights=WEIGHTS_PATH)
 classes = (
     'dent',
     'scratch',
