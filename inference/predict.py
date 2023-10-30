@@ -21,7 +21,8 @@ classes = (
 
 @dataclass
 class Prediction:
-    label: int
+    label_id: int
+    label_name: str
     score: float
     bbox: list[int, int, int, int]
     
@@ -38,9 +39,11 @@ class Prediction:
         if max(scores_list) != scores_list[0]:
             raise RuntimeError("Something went wrong: First object score is not the highest!")
         
+        class_id = int(pred['labels'][0])
         return cls(
-            label=pred['labels'][0],
-            score=pred['scores'][0],
+            label_id=class_id,
+            label_name=classes[class_id],
+            score=float(pred['scores'][0]),
             bbox=pred['bboxes'][0]
         )
 
