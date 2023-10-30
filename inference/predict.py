@@ -3,7 +3,7 @@ from mmdet.apis import DetInferencer
 from dataclasses import dataclass
 
 # Initialize the DetInferencer
-inferencer = DetInferencer(model='work_dir/20231030_112952/vis_data/config.py', weights='work_dir/epoch_20.pth')
+inferencer = DetInferencer(model='config/DCN_plus_cfg.py', weights='weights/epoch_24.pth')
 classes = (
     'dent',
     'scratch',
